@@ -1,9 +1,8 @@
-yaml
-name: TONE Pure Ruck Compliance Pulse
+name: TONE Compliance Audit
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
@@ -12,14 +11,9 @@ jobs:
   verify_ruck_inversion:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Autarkic Ruck Assets
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Execute Autarkic Ruck Simulation
+      - name: Run Ruck Simulation
         run: |
-          python src/RuckSimulation.py > RUCK_CORE_OUTPUT.log
-          cat RUCK_CORE_OUTPUT.log
-
-      - name: SNAP - Collapse Wavefunction
-        run: |
-          echo "SNAP! Operational state pinned to 1.0. RIPL v1.0 enforced."
+          python src/RuckSimulation.py
